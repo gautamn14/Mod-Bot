@@ -1,3 +1,4 @@
+const config = require("../config.json")
 module.exports.run = (bot, message) => {
   let permlvl = bot.elevation(message)
   message.reply("Your permission level is: " + permlvl)
@@ -6,7 +7,8 @@ module.exports.run = (bot, message) => {
 module.exports.help = {
   name: "permlvl",
   description: "Shows your permission level.",
-  usage: "permlvl"
+  more_info: "Shows your permission level for the commands.",
+  usage: config.prefix + "permlvl"
 }
 
 module.exports.conf = {
