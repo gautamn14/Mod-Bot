@@ -88,6 +88,23 @@ bot.on("message", message => {
   message.channel.send(`Error :: The provided command does not exist. `, {code:'asciidoc'});
 }
     }
+    
+     if(message.content.startsWith(config.prefix + "ping")) {
+      var can_i;
+      let command = args.slice(1).join(" ")
+      if(command.length < 1) return;
+      if (bot.commands.has(command)) {
+        command = bot.commands.get(command);
+        if(perms < command.conf.permLevel) {
+          can_i = "No"
+        } else {
+          can_i = "Yes"
+        }
+        message.channel.send(`= Detailed help for :: ${command.help.name} = \n\nMe madarchod :: ${command.help.more_info}\n\nGuild only :: ${command.conf.guildOnly}\n\nEnabled :: ${command.conf.enabled}\n\nRequired permission level :: ${command.conf.permLevel}\n\nCan I run the command :: ${can_i} (Your permission level is : ${perms})\n\nusage :: ${command.help.usage}`, {code:'asciidoc'});
+} else {
+  message.channel.send(`Error :: The provided command does not exist. `, {code:'asciidoc'});
+}
+    }
 
     if (message.content.startsWith(config.prefix + "eval")) {
         if (perms < 10) return;
